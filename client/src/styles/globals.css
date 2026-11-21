@@ -84,7 +84,9 @@
     --primary-foreground: var(--color-white);
 
     --secondary: var(--color-gold);
-    --secondary-foreground: var(--color-black); /* black since forest on gold fails WCAG AA contrast */
+    --secondary-foreground: var(
+      --color-black
+    ); /* black since forest on gold fails WCAG AA contrast */
 
     --muted: var(--color-sage);
     --muted-foreground: var(--color-brand-muted);
