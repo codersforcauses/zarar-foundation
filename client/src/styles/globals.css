@@ -1,27 +1,38 @@
 @import "tailwindcss";
 
-@theme {
-  /* some fallbacks */
+@theme inline {
+  /* old fallbacks, we can NOT use inter as a fallback it's THE ai font */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
-  --color-destructive: hsl(var(--destructive));
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
-  --color-popover: hsl(var(--popover));
-  --color-popover-foreground: hsl(var(--popover-foreground));
-  --color-card: hsl(var(--card));
-  --color-card-foreground: hsl(var(--card-foreground));
+
+  /* brand palette: bg-forest, text-ink, border-line, etc. */
+  --color-forest: #0b503b;
+  --color-gold: #d4a72c;
+  --color-paper: #faf9f5;
+  --color-white: #ffffff;
+  --color-ink: #173d32;
+  --color-sage: #edf1e9;
+  --color-line: #dce3dc;
+  --color-brand-muted: #5c6e64;
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
@@ -30,19 +41,19 @@
 }
 
 @keyframes accordion-down {
-  from: {
+  from {
     height: 0;
   }
-  to: {
+  to {
     height: var(--radix-accordion-content-height);
   }
 }
 
 @keyframes accordion-up {
-  from: {
+  from {
     height: var(--radix-accordion-content-height);
   }
-  to: {
+  to {
     height: 0;
   }
 }
@@ -54,65 +65,35 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: #faf9f5; /* paper */
+    --foreground: #5c6e64; /* muted */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: #ffffff; /* white */
+    --card-foreground: #5c6e64; /* muted */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: #ffffff; /* white */
+    --popover-foreground: #5c6e64; /* muted */
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: #0b503b; /* forest */
+    --primary-foreground: #ffffff; /* white */
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: #d4a72c; /* gold */
+    --secondary-foreground: #000000; /* black since forest on gold fails WCAG AA contrast */
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: #edf1e9; /* sage */
+    --muted-foreground: #5c6e64; /* muted */
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: #edf1e9; /* sage for hover for menus, ghost/outline buttons */
+    --accent-foreground: #173d32; /* ink */
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: hsl(0 84.2% 60.2%); /* left as default */
+    --destructive-foreground: hsl(210 40% 98%); /* left as default */
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: #dce3dc; /* line */
+    --input: #dce3dc; /* line */
+    --ring: #0b503b; /* forest */
 
     --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
   }
 }
 
