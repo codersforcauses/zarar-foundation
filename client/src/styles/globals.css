@@ -1,20 +1,25 @@
 @import "tailwindcss";
 
-@theme inline {
+/* brand palette: bg-forest, text-ink, border-line, etc.
+   the only place hex values live. `static` always emits these as CSS
+   variables so the shadcn tokens in :root below can reference them */
+@theme static {
   --color-*: initial;
-
-  /* old fallbacks, we can NOT use inter as a fallback it's THE ai font */
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-
-  /* brand palette: bg-forest, text-ink, border-line, etc. */
   --color-forest: #0b503b;
   --color-gold: #d4a72c;
   --color-paper: #faf9f5;
   --color-white: #ffffff;
+  --color-black: #000000;
   --color-ink: #173d32;
   --color-sage: #edf1e9;
   --color-line: #dce3dc;
   --color-brand-muted: #5c6e64;
+  --color-inverse: #dfe8df; /* soft text on forest backgrounds (purpose strip, get involved, footer) */
+}
+
+@theme inline {
+  /* old fallbacks, we can NOT use inter as a fallback it's THE ai font */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
   --color-border: var(--border);
   --color-input: var(--input);
@@ -67,33 +72,35 @@
 
 @layer base {
   :root {
-    --background: #faf9f5; /* paper */
-    --foreground: #5c6e64; /* muted */
+    --background: var(--color-paper);
+    --foreground: var(--color-brand-muted);
 
-    --card: #ffffff; /* white */
-    --card-foreground: #5c6e64; /* muted */
+    --card: var(--color-white);
+    --card-foreground: var(--color-brand-muted);
 
-    --popover: #ffffff; /* white */
-    --popover-foreground: #5c6e64; /* muted */
+    --popover: var(--color-white);
+    --popover-foreground: var(--color-brand-muted);
 
-    --primary: #0b503b; /* forest */
-    --primary-foreground: #ffffff; /* white */
+    --primary: var(--color-forest);
+    --primary-foreground: var(--color-white);
 
-    --secondary: #d4a72c; /* gold */
-    --secondary-foreground: #000000; /* black since forest on gold fails WCAG AA contrast */
+    --secondary: var(--color-gold);
+    --secondary-foreground: var(
+      --color-black
+    ); /* black since forest on gold fails WCAG AA contrast */
 
-    --muted: #edf1e9; /* sage */
-    --muted-foreground: #5c6e64; /* muted */
+    --muted: var(--color-sage);
+    --muted-foreground: var(--color-brand-muted);
 
-    --accent: #edf1e9; /* sage for hover for menus, ghost/outline buttons */
-    --accent-foreground: #173d32; /* ink */
+    --accent: var(--color-sage); /* hover for menus, ghost/outline buttons */
+    --accent-foreground: var(--color-ink);
 
     --destructive: hsl(0 84.2% 60.2%); /* left as default */
     --destructive-foreground: hsl(210 40% 98%); /* left as default */
 
-    --border: #dce3dc; /* line */
-    --input: #dce3dc; /* line */
-    --ring: #0b503b; /* forest */
+    --border: var(--color-line);
+    --input: var(--color-line);
+    --ring: var(--color-forest);
 
     --radius: 0.5rem;
   }
