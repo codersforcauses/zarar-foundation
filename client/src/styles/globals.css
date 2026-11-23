@@ -4,6 +4,7 @@
    the only place hex values live. `static` always emits these as CSS
    variables so the shadcn tokens in :root below can reference them */
 @theme static {
+  --color-*: initial;
   --color-forest: #0b503b;
   --color-gold: #d4a72c;
   --color-paper: #faf9f5;
